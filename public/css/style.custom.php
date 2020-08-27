@@ -19,6 +19,12 @@ body.loginpage, .header, .leftmenu .nav-tabs.nav-stacked > li.active > a, .leftm
 	background-color: <?php echo $color; ?> !important;
 }
 
+.header .logo a{
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 10%;
+}
+
 .header .logo,
 .cr-boundary,
 .maincontentinner .dt-buttons .dt-button-collection button:hover,
