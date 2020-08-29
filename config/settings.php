@@ -53,7 +53,9 @@ class settings {
 
 	public function getBaseURL () {
 
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        //        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        // cloudflare使用の都合上、https固定
+        $protocol = 'https://';
         $domainName = $_SERVER['HTTP_HOST'].'';
         return $protocol.$domainName;
 
