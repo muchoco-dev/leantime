@@ -15,6 +15,7 @@
 <ul class="nav nav-tabs nav-stacked">
     <?php if ($this->get('allProjects') !== false){?>
         <li class="project-selector">
+        <?php var_dump(); ?>
 
             <div class="form-group">
                 <form action="" method="post">
@@ -64,12 +65,16 @@
             <li <?php if($module == 'tickets' && ($action == 'showKanban' || $action == 'showAll'|| $action == 'showTicket')) echo"class=' active '"; ?>>
                 <a href="<?=$this->get('ticketMenuLink');?>"><?=$this->__("menu.todos") ?></a>
             </li>
+            <?php if ($_SESSION['currentProject'] !== '4') { ?>
             <li <?php if($module == 'tickets' && $action == 'roadmap') echo" class='active' "; ?>>
                 <a href="<?=BASE_URL ?>/tickets/roadmap"><?=$this->__("menu.milestones") ?></a>
             </li>
+            <?php } ?>
             <li <?php if($module == 'timesheets' && $action == 'showAll') echo" class='active' "; ?>>
                 <a href="<?=BASE_URL ?>/timesheets/showAll"><?=$this->__("menu.timesheets") ?></a>
             </li>
+
+            <?php if ($_SESSION['currentProject'] !== '4') { ?>
             <li <?php if($module == 'leancanvas') echo"  class='active' "; ?>>
                 <a href="<?=BASE_URL ?>/leancanvas/simpleCanvas"><?=$this->__("menu.research") ?></a>
             </li>
@@ -79,6 +84,7 @@
             <li <?php if($module == 'retrospectives' && ($action == 'showBoards' || $action == 'showBoards')) echo"class=' active '"; ?>>
                 <a href="<?=BASE_URL ?>/retrospectives/showBoards"><?=$this->__("menu.retrospectives") ?></a>
             </li>
+            <?php } ?>
             <li <?php if($module == 'reports') echo"class=' active '"; ?>>
                 <a href="<?=BASE_URL ?>/reports/show"><?=$this->__("menu.reports") ?></a>
             </li>
