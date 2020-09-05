@@ -1,5 +1,6 @@
 <?php
-	$states = $this->get('states');
+    $states = $this->get('states');
+    $project = $this->get('project');
     $projectProgress = $this->get('projectProgress');
     $projectProgress = $this->get('projectProgress');
     $sprintBurndown = $this->get('sprintBurndown');
@@ -35,7 +36,6 @@
 
 <div class="maincontent">
     <div class="maincontentinner">
-
         <?php echo $this->displayNotification(); ?>
 
         <div class="row">
@@ -343,6 +343,15 @@
             </div>
 
             <div class="col-lg-4">
+                <div class="row" id="project">
+                    <div class="col-md-12">
+                        <h5 class="subtitle"><?php echo $project['name']; ?></h5>
+                        <div>
+                            <?php echo $project['details']; ?>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="row" id="projectProgressContainer">
                     <div class="col-md-12">

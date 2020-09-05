@@ -44,6 +44,10 @@ namespace leantime\domain\controllers {
 
             $this->tpl->assign('allUsers', $this->userService->getAll());
 
+            //Project
+            $project = $this->projectService->getProject($_SESSION['currentProject']);
+            $this->tpl->assign('project', $project);
+
             //Project Progress
             $progress = $this->projectService->getProjectProgress($_SESSION['currentProject']);
 
