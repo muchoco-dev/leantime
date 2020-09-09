@@ -213,11 +213,11 @@ leantime.helperController = (function () {
                 advanceOn: '.headmenu click',
                 buttons: [
                 {
-                    text: 'Cancel',
+                    text: leantime.i18n.__("tour.cancel"),
                     classes: 'shepherd-button-secondary',
                     action: tour.cancel
                 }, {
-                    text: 'Next',
+                    text: leantime.i18n.__("tour.next"),
                     action: tour.next
                 }
                 ]
