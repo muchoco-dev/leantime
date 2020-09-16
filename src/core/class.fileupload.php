@@ -85,7 +85,7 @@ class fileupload
 
         $this->config = new config();
         $this->path = $this->config->userFilePath;
-        
+
         if($this->config->useS3 == true) {
             // Instantiate the S3 client with your AWS credentials
             $this->s3Client = new S3\S3Client(
@@ -101,7 +101,7 @@ class fileupload
 
         }else{
             //Can discuss whether we want to allow local uploads again at some point...
-            return false;
+           // return false;
 
         }
 
