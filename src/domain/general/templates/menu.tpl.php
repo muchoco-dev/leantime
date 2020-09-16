@@ -58,6 +58,9 @@
             </div>
         </li>
     <li class="dropdown">
+        <?php
+            $hidden_projects = [4, 5];
+        ?>
         <ul style='display:block'>
             <li <?php if($module == 'dashboard') echo" class='active' "; ?>>
                 <a href="<?=BASE_URL ?>/dashboard/show"><?=$this->__("menu.dashboard") ?></a>
@@ -65,7 +68,7 @@
             <li <?php if($module == 'tickets' && ($action == 'showKanban' || $action == 'showAll'|| $action == 'showTicket')) echo"class=' active '"; ?>>
                 <a href="<?=$this->get('ticketMenuLink');?>"><?=$this->__("menu.todos") ?></a>
             </li>
-            <?php if ($_SESSION['currentProject'] !== '4') { ?>
+            <?php if (in_array($_SESSION['currentProject'], $hidden_projects, true)) { ?>
             <li <?php if($module == 'tickets' && $action == 'roadmap') echo" class='active' "; ?>>
                 <a href="<?=BASE_URL ?>/tickets/roadmap"><?=$this->__("menu.milestones") ?></a>
             </li>
@@ -74,7 +77,7 @@
                 <a href="<?=BASE_URL ?>/timesheets/showAll"><?=$this->__("menu.timesheets") ?></a>
             </li>
 
-            <?php if ($_SESSION['currentProject'] !== '4') { ?>
+            <?php if (in_array($_SESSION['currentProject'], $hidden_projects, true)) { ?>
             <li <?php if($module == 'leancanvas') echo"  class='active' "; ?>>
                 <a href="<?=BASE_URL ?>/leancanvas/simpleCanvas"><?=$this->__("menu.research") ?></a>
             </li>

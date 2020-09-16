@@ -24,10 +24,10 @@ namespace leantime\domain\repositories {
         public $kind = array(
             'GENERAL_BILLABLE' => 'label.general_billable',
             'GENERAL_NOT_BILLABLE' => 'label.general_not_billable',
-            'PROJECTMANAGEMENT' => 'label.projectmanagement',
+/*            'PROJECTMANAGEMENT' => 'label.projectmanagement',
             'DEVELOPMENT' => 'label.development',
             'BUGFIXING_NOT_BILLABLE' => 'label.bugfixing_not_billable',
-            'TESTING' => 'label.testing',
+            'TESTING' => 'label.testing',*/
         );
 
         /**
