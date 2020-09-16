@@ -32,7 +32,7 @@ class settings {
 	 */
 	public function loadSettings(){
 
-		date_default_timezone_set('America/Los_Angeles');
+        //		date_default_timezone_set('America/Los_Angeles');
         error_reporting(E_ALL);
 
 		if($this->debug === 1){
