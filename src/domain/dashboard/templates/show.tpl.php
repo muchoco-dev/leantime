@@ -353,6 +353,7 @@
                 </div>
 
 
+                <?php /*
                 <div class="row" id="projectProgressContainer">
                     <div class="col-md-12">
 
@@ -421,7 +422,8 @@
 
                         </ul>
                     </div>
-                </div>
+                 </div>
+                 */ ?>
             </div>
         </div>
     </div>
