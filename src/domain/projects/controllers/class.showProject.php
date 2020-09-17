@@ -37,10 +37,10 @@ namespace leantime\domain\controllers {
             $projectRepo = new repositories\projects();
             $config = new core\config();
 
-            if(!core\login::userIsAtLeast("clientManager")) {
+/*            if(!core\login::userIsAtLeast("clientManager")) {
                 $tpl->display('general.error');
                 exit();
-            }
+            }*/
 
 
             if (isset($_GET['id'])) {

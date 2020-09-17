@@ -37,7 +37,9 @@
 
                 <ul>
                     <li><a href="#projectdetails"><?php echo $this->__('tabs.projectdetails'); ?></a></li>
-                    <li><a href="#integrations"><?php echo $this->__('tabs.Integrations'); ?></a></li>
+                    <?php if($login::userIsAtLeast("manager")) { ?>
+                        <li><a href="#integrations"><?php echo $this->__('tabs.Integrations'); ?></a></li>
+                    <?php } ?>
                     <li><a href="#files"><?php echo sprintf($this->__('tabs.files_with_count'), $this->get('numFiles')); ?></a></li>
                     <li><a href="#comment"><?php echo sprintf($this->__('tabs.discussion_with_count'), $this->get('numComments')); ?></a></li>
                 </ul>
@@ -89,7 +91,9 @@
                                                             <li class="nav-header"><?php echo $this->__("subtitles.file"); ?></li>
                                                             <li><a href="<?=BASE_URL ?>/download.php?module=<?php echo $file['module'] ?>&encName=<?php echo $file['encName'] ?>&ext=<?php echo $file['extension'] ?>&realName=<?php echo $file['realName'] ?>"><?php echo $this->__("links.download"); ?></a></li>
 
-                                                            <?php  if ($login::userIsAtLeast("developer")) { ?>
+
+                                                            <?php if($login::userIsAtLeast("manager")) { ?>
+                                                            <?php //  if ($login::userIsAtLeast("developer")) { ?>
                                                                 <li><a href="<?=BASE_URL ?>/projects/showProject/<?php echo $project['id']; ?>?delFile=<?php echo $file['id'] ?>" class="delete"><i class="fa fa-trash"></i> <?php echo $this->__("links.delete"); ?></a></li>
                                                             <?php  } ?>
 
@@ -126,6 +130,8 @@
 
                 </div>
 
+
+                    <?php if($login::userIsAtLeast("manager")) { ?>
                     <div id="integrations">
 
                         <h4 class="widgettitle title-light"><span class="iconfa iconfa-leaf"></span>Mattermost</h4>
@@ -197,6 +203,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
