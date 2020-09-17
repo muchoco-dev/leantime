@@ -91,11 +91,11 @@
             <li <?php if($module == 'reports') echo"class=' active '"; ?>>
                 <a href="<?=BASE_URL ?>/reports/show"><?=$this->__("menu.reports") ?></a>
             </li>
-            <?php if ($login::userIsAtLeast("clientManager")) { ?>
+            <?php // if ($login::userIsAtLeast("clientManager")) { ?>
                 <li <?php if($module == 'projects' && $action == 'showProject') echo"  class='active' "; ?>>
                     <a href="<?=BASE_URL ?>/projects/showProject/<?=$_SESSION['currentProject']?>"><?=$this->__("menu.project_settings") ?></a>
                 </li>
-            <?php } ?>
+            <?php // } ?>
         </ul>
     </li>
     <?php } ?>
