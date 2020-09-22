@@ -15,8 +15,6 @@
 <ul class="nav nav-tabs nav-stacked">
     <?php if ($this->get('allProjects') !== false){?>
         <li class="project-selector">
-        <?php var_dump(); ?>
-
             <div class="form-group">
                 <form action="" method="post">
                     <a href="javascript:void(0)" class="dropdown-toggle bigProjectSelector" data-toggle="dropdown">
