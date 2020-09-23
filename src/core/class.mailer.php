@@ -159,7 +159,7 @@ namespace leantime\core {
 
             $this->mailAgent->isHTML(true);                                  // Set email format to HTML
 
-            $this->mailAgent->setFrom($this->emailDomain, $from . " (Leantime)");
+            $this->mailAgent->setFrom($this->emailDomain, $from);
 
             $this->mailAgent->Subject = $this->subject;
 
