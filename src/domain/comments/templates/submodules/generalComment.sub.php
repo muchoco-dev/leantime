@@ -73,7 +73,6 @@
 
                 <?php if ($comments->getReplies($row['id'])) : ?>
                     <?php foreach($comments->getReplies($row['id']) as $comment): ?>
-
                         <div style="display:block; padding:10px; padding-left: 60px; border-bottom:1px solid #f0f0f0;">
 
 
@@ -82,8 +81,8 @@
                                 <div class="right">
                                     <?php printf(
                                         $this->__('text.written_on'),
-                                        $this->getFormattedDateString($row['date']),
-                                        $this->getFormattedTimeString($row['date'])
+                                        $this->getFormattedDateString($comment['date']),
+                                        $this->getFormattedTimeString($comment['date'])
                                     ); ?></div>
                                 <strong><?php $this->e($comment['firstname']); ?> <?php $this->e($comment['lastname']); ?></strong><br />
                                 <p style="margin-left:60px;"><?php echo nl2br($this->escape($comment['text'])); ?></p>
