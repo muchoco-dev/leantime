@@ -43,8 +43,8 @@
                         <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?=$this->__("links.new_with_icon") ?> <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="<?=BASE_URL ?>/tickets/newTicket"> <?=$this->__("links.add_todo") ?></a></li>
-                            <li><a href="<?=BASE_URL ?>/tickets/editMilestone" class="milestoneModal"><?=$this->__("links.add_milestone") ?></a></li>
-                            <li><a href="<?=BASE_URL ?>/sprints/editSprint" class="sprintModal"><?=$this->__("links.add_sprint") ?></a></li>
+<?php /*                            <li><a href="<?=BASE_URL ?>/tickets/editMilestone" class="milestoneModal"><?=$this->__("links.add_milestone") ?></a></li> */ ?>
+<?php /*                            <li><a href="<?=BASE_URL ?>/sprints/editSprint" class="sprintModal"><?=$this->__("links.add_sprint") ?></a></li> */ ?>
                         </ul>
                     </div>
 
@@ -124,7 +124,8 @@
                         </div>
 
 					
-				    </div>
+                    </div>
+                    <?php /*
                     <div class="filterBoxLeft">
 
                         <label class="inline"><?=$this->__("label.milestone") ?></label>
@@ -143,8 +144,9 @@
                             </select>
                         </div>
 
-                    </div>
+                        </div>*/ ?>
 
+                        <?php /*
                     <div class="filterBoxLeft">
 
                         <label class="inline"><?=$this->__("label.todo_type") ?></label>
@@ -163,7 +165,8 @@
                             </select>
                         </div>
 
-                    </div>
+                        </div>
+                         */ ?>
 
                     <div class="filterBoxLeft">
                         <label class="inline"><?=$this->__("label.search_term") ?></label><br />
@@ -204,7 +207,7 @@
 
                                         <form method="post">
                                             <input type="text" name="headline" style="width:100%;" title="<?=$this->__("label.headline") ?>"/><br />
-                                            <input type="hidden" name="milestone" value="<?php echo $searchCriteria['milestone']; ?>" />
+<?php /*                                            <input type="hidden" name="milestone" value="<?php echo $searchCriteria['milestone']; ?>" /> */ ?>
                                             <input type="hidden" name="status" value="<?php echo $key; ?> " />
                                             <input type="hidden" name="sprint" value="<?php echo $_SESSION["currentSprint"]; ?> " />
                                             <input type="submit" value="Save" name="quickadd" />
@@ -292,7 +295,7 @@
                                         <div class="clearfix" style="padding-bottom: 8px;"></div>
 
 										<div class="timerContainer" id="timerContainer-<?php echo $row["id"]; ?>" >
-
+                                        <?php /*
                                             <div class="dropdown ticketDropdown milestoneDropdown colorized show firstDropdown" >
                                                 <a style="background-color:<?=$this->escape($row['milestoneColor'])?>" class="dropdown-toggle f-left  label-default milestone" href="javascript:void(0);" role="button" id="milestoneDropdownMenuLink<?=$row['id']?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <span class="text"><?php
@@ -314,7 +317,8 @@
                                                         echo"</li>";
                                                     }?>
                                                 </ul>
-                                            </div>
+                                                </div>
+                                         */ ?>
 
                                             <div class="dropdown ticketDropdown effortDropdown show">
                                                 <a class="dropdown-toggle f-left  label-default effort" href="javascript:void(0);" role="button" id="effortDropdownMenuLink<?=$row['id']?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

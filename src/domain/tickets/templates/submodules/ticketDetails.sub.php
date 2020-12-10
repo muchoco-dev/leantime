@@ -19,6 +19,7 @@
 
                     </div>
                 </div>
+                <?php /*
                 <div class="form-group">
                     <label class="span4 control-label"><?php echo $this->__('label.milestone'); ?></label>
                     <div class="span6">
@@ -38,7 +39,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                    </div> */ ?>
                 <div class="form-group">
                     <label class="span4 control-label"><?php echo $this->__('label.todo_type'); ?></label>
                     <div class="span6">
@@ -70,6 +71,7 @@
                         </select>
                     </div>
                 </div>
+                <?php /*
                 <div class="form-group">
                     <label class="span4 control-label"><?php echo $this->__('label.sprint'); ?></label>
                     <div class="span6">
@@ -89,7 +91,7 @@
                             } ?>
                         </select>
                     </div>
-                </div>
+                    </div>*/ ?>
                 <div class="form-group">
                     <label class="span4 control-label"><?php echo $this->__('label.effort'); ?></label>
                     <div class="span6">

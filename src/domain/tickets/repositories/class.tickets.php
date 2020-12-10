@@ -62,7 +62,7 @@ namespace leantime\domain\repositories {
          * @access public
          * @var    array
          */
-        public $efforts = array('1' => 'XS', '2' => 'S', 3=>"M", "5"=>"L", 8 => "XL", 13 => "XXL");
+        public $efforts = array(1 => 'S', 2 => 'A', 3 => "B", 5 => "C");
 
         /**
          * @access public
