@@ -120,6 +120,7 @@ $helper = $this->get('helper');
 			</select> </td>
 			<td>
 
+            <?php /*
 			<input type="checkbox" value="on" name="invEmpl" id="invEmpl" onclick="submit();" 
 				<?php 
 				if($this->get('invEmpl') == '1') echo ' checked="checked"';
@@ -132,7 +133,8 @@ $helper = $this->get('helper');
 				if($this->get('invComp') == '1') echo ' checked="checked"';
 				?>
 			/><label for="invEmpl"><?php echo $this->__("label.invoiced_comp"); ?></label>
-			</td>
+            </td>
+             */ ?>
 			<td>
                 <input type="hidden" name='filterSubmit' value="1"/>
                 <input type="submit" value="<?php echo $this->__('buttons.search')?>" class="reload" />
@@ -154,8 +156,10 @@ $helper = $this->get('helper');
           <col class="con1" />
       	  <col class="con0"/>
           <col class="con1" />
+          <?php /*
       	  <col class="con0"/>
-           <col class="con1"/>
+          <col class="con1"/>
+           */ ?>
 	</colgroup>
 	<thead>
 		<tr>
@@ -168,9 +172,11 @@ $helper = $this->get('helper');
 			<th><?php echo $this->__('label.project'); ?></th>
 			<th><?php echo $this->__('label.employee'); ?></th>
 			<th><?php echo $this->__("label.type")?></th>
-			<th><?php echo $this->__('label.description'); ?></th>
+            <th><?php echo $this->__('label.description'); ?></th>
+            <?php /*
 			<th><?php echo $this->__('label.invoiced'); ?></th>
-			<th><?php echo $this->__('label.invoiced_comp'); ?></th>
+            <th><?php echo $this->__('label.invoiced_comp'); ?></th>
+             */ ?>
 		</tr>
 
 	</thead>
@@ -203,7 +209,8 @@ $helper = $this->get('helper');
 			<td data-order="<?=$this->e($row['name']); ?>"><a href="<?=BASE_URL ?>/projects/showProject/<?php echo $row['projectId']; ?>"><?php $this->e($row['name']); ?></a></td>
 			<td><?php $this->e($row['firstname']); ?>, <?php $this->e($row['lastname']); ?></td>
 			<td><?php echo $this->__($this->get('kind')[$row['kind']]); ?></td>
-			<td><?php $this->e($row['description']); ?></td>
+            <td><?php $this->e($row['description']); ?></td>
+            <?php /*
 			<td data-order="<?php if($row['invoicedEmpl'] == '1'){ echo $this->getFormattedDateString($row['invoicedEmplDate']); }?>"><?php if($row['invoicedEmpl'] == '1'){?> <?php echo $this->getFormattedDateString($row['invoicedEmplDate']); ?>
 			<?php }else{ ?>
                 <?php if ($login::userIsAtLeast("clientManager")) { ?>
@@ -218,7 +225,7 @@ $helper = $this->get('helper');
                     <input type="checkbox" name="invoicedComp[]" class="invoicedComp" value="<?php echo $row['id']; ?>" />
                     <?php } ?>
                     <?php } ?>
-            </td>
+                    </td>*/ ?>
 		</tr>
 		<?php } ?>
 	</tbody>
@@ -226,7 +233,7 @@ $helper = $this->get('helper');
 		<tr>
 			<td colspan="2"><strong><?php echo $this->__("label.total_hours")?></strong></td>
 			<td colspan="7"><strong><?php echo $sum; ?></strong></td>
-
+            <?php /*
 			<td>
                 <?php if ($login::userIsAtLeast("clientManager")) { ?>
 				<input type="submit" class="button" value="<?php echo $this->__('buttons.save'); ?>" name="saveInvoice" />
@@ -240,7 +247,8 @@ $helper = $this->get('helper');
                 <?php if ($login::userIsAtLeast("clientManager")) { ?>
                 <input type="checkbox"  id="checkAllComp" /><?php echo $this->__('label.select_all')?>
                 <?php } ?>
-            </td>
+                </td>
+             */ ?>
 		</tr>
 	</tfoot>
 </table>

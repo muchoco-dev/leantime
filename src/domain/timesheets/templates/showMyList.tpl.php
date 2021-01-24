@@ -99,8 +99,10 @@ $helper = $this->get('helper');
                         <th><?php echo $this->__('label.employee'); ?></th>
                         <th><?php echo $this->__("label.type")?></th>
                         <th><?php echo $this->__('label.description'); ?></th>
+                        <?php /*
                         <th><?php echo $this->__('label.invoiced'); ?></th>
                         <th><?php echo $this->__('label.invoiced_comp'); ?></th>
+                         */ ?>
                     </tr>
 
                 </thead>
@@ -128,6 +130,7 @@ $helper = $this->get('helper');
                         <td><?php $this->e($row['firstname']); ?>, <?php $this->e($row['lastname']); ?></td>
                         <td><?php echo $this->__($this->get('kind')[$row['kind']]); ?></td>
                         <td><?php $this->e($row['description']); ?></td>
+                        <?php /*
                         <td data-order="<?php if($row['invoicedEmpl'] == '1'){ echo $this->getFormattedDateString($row['invoicedEmplDate']); }?>"><?php if($row['invoicedEmpl'] == '1'){?> <?php echo $this->getFormattedDateString($row['invoicedEmplDate']); ?>
                         <?php }else{
                                 echo $this->__("label.pending");
@@ -137,6 +140,7 @@ $helper = $this->get('helper');
                         <?php }else{
                                 echo $this->__("label.pending");
                             } ?></td>
+                         */ ?>
                     </tr>
                     <?php } ?>
                 </tbody>
