@@ -290,14 +290,11 @@ namespace leantime\domain\repositories {
          */
         public function getAllBySearchCriteria($searchCriteria, $sort='standard')
         {
-
             $query = "SELECT
 							zp_tickets.id,
 							zp_tickets.headline, 
 							zp_tickets.description,
 							zp_tickets.date,
-							zp_tickets.sprint,
-							zp_sprints.name as sprintName,
 							zp_tickets.storypoints,
 							zp_tickets.sortindex,
 							zp_tickets.dateToFinish,
@@ -320,8 +317,6 @@ namespace leantime\domain\repositories {
 							t2.firstname AS editorFirstname,
 							t2.lastname AS editorLastname,
 							t2.profileId AS editorProfileId,
-							milestone.headline AS milestoneHeadline,
-							IF((milestone.tags IS NULL OR milestone.tags = ''), '#1b75bb', milestone.tags) AS milestoneColor,
 							COUNT(DISTINCT zp_comment.id) AS commentCount,
 							COUNT(DISTINCT zp_file.id) AS fileCount
 						FROM 
@@ -333,10 +328,8 @@ namespace leantime\domain\repositories {
 						LEFT JOIN zp_user AS t2 ON zp_tickets.editorId = t2.id
 						LEFT JOIN zp_comment ON zp_tickets.id = zp_comment.moduleId and zp_comment.module = 'ticket'
 						LEFT JOIN zp_file ON zp_tickets.id = zp_file.moduleId and zp_file.module = 'ticket'
-						LEFT JOIN zp_sprints ON zp_tickets.sprint = zp_sprints.id
-						LEFT JOIN zp_tickets AS milestone ON zp_tickets.dependingTicketId = milestone.id AND zp_tickets.dependingTicketId > 0 AND milestone.type = 'milestone'
-						LEFT JOIN zp_timesheets AS timesheets ON zp_tickets.id = timesheets.ticketId
-						WHERE zp_relationuserproject.userId = :userId AND zp_tickets.type <> 'subtask' AND zp_tickets.type <> 'milestone'";
+                        LEFT JOIN zp_timesheets AS timesheets ON zp_tickets.id = timesheets.ticketId
+                        WHERE zp_relationuserproject.userId = :userId AND zp_tickets.type <> 'subtask'";
 
             if($_SESSION['currentProject']  != "") {
                 $query .= " AND zp_tickets.projectId = :projectId";
@@ -347,11 +340,6 @@ namespace leantime\domain\repositories {
                 $editorIdIn = core\db::arrayToPdoBindingString("users", count(explode(",", $searchCriteria["users"])));
                 $query .= " AND zp_tickets.editorId IN(" . $editorIdIn. ")";
             }
-
-            if($searchCriteria["milestone"]  != "") {
-                $query .= " AND zp_tickets.dependingTicketId = :milestoneId";
-            }
-
 
             if($searchCriteria["status"]  != "") {
 
@@ -378,15 +366,6 @@ namespace leantime\domain\repositories {
                 $query .= " AND (FIND_IN_SET(:termStandard, zp_tickets.tags) OR zp_tickets.headline LIKE :termWild OR zp_tickets.description LIKE :termWild OR zp_tickets.id LIKE :termWild)";
             }
 
-            if($searchCriteria["sprint"]  > 0 && $searchCriteria["sprint"]  != "all") {
-                $sprintIn = core\db::arrayToPdoBindingString("sprint", count(explode(",", $searchCriteria["sprint"])));
-                $query .= " AND zp_tickets.sprint IN(".$sprintIn.")";
-            }
-
-            if($searchCriteria["sprint"]  == "backlog" ) {
-                $query .= " AND (zp_tickets.sprint IS NULL OR zp_tickets.sprint = '' OR zp_tickets.sprint = -1)";
-            }
-
             $query .= " GROUP BY zp_tickets.id ";
 
             if($sort == "standard") {
@@ -405,10 +384,6 @@ namespace leantime\domain\repositories {
                 $stmn->bindValue(':projectId', $_SESSION['currentProject'], PDO::PARAM_INT);
             }
 
-            if($searchCriteria["milestone"]  != "") {
-                $stmn->bindValue(':milestoneId', $searchCriteria["milestone"], PDO::PARAM_INT);
-            }
-
             if($searchCriteria["type"]  != "") {
                 $stmn->bindValue(':searchType', $searchCriteria["type"], PDO::PARAM_STR);
             }
@@ -423,12 +398,6 @@ namespace leantime\domain\repositories {
             if($searchCriteria["status"]  != "" && array_search("not_done", $statusArray) === false) {
                 foreach(explode(",", $searchCriteria["status"]) as $key => $status) {
                     $stmn->bindValue(":status" . $key, $status, PDO::PARAM_STR);
-                }
-            }
-
-            if($searchCriteria["sprint"]  > 0 && $searchCriteria["sprint"]  != "all") {
-                foreach(explode(",", $searchCriteria["sprint"]) as $key => $sprint) {
-                    $stmn->bindValue(":sprint" . $key, $sprint, PDO::PARAM_STR);
                 }
             }
 
