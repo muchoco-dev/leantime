@@ -44,15 +44,7 @@ namespace leantime\domain\controllers {
 
             $this->tpl->assign('onTheClock', $this->timesheetService->isClocked($_SESSION["userdata"]["id"]));
 
-
-            $this->tpl->assign('sprints', $this->sprintService->getAllSprints($_SESSION["currentProject"]));
-            $this->tpl->assign('futureSprints', $this->sprintService->getAllFutureSprints($_SESSION["currentProject"]));
-
             $this->tpl->assign('users', $this->projectService->getUsersAssignedToProject($_SESSION["currentProject"]));
-            $this->tpl->assign('milestones', $this->ticketService->getAllMilestones($_SESSION["currentProject"]));
-
-            $this->tpl->assign('currentSprint', $_SESSION["currentSprint"]);
-            $this->tpl->assign('allSprints', $this->sprintService->getAllSprints($_SESSION["currentProject"]));
 
             $this->tpl->display('tickets.showKanban');
 
