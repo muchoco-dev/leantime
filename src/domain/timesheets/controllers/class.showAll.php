@@ -139,9 +139,26 @@ namespace leantime\domain\controllers {
             $tpl->assign('projectFilter', $projectFilter);
             $tpl->assign('allTimesheets', $timesheetsRepo->getAll($projectFilter, $kind, $dateFrom, $dateTo, $userId, $invEmplCheck, $invCompCheck));
 
+            $tpl->assign('weekdayNum', $this->weekdayNum('today', 'last day of this month'));
+
             $tpl->display('timesheets.showAll');
+        }
 
 
+        private function weekdayNum($st, $en)
+        {
+            $startTimestamp = strtotime($st);
+            $endTimestamp = strtotime($en);
+            $num       = 0;
+
+            $timestamp = $startTimestamp;
+            while($timestamp < $endTimestamp) {
+                if (date('w', $timestamp) !== '0' && date('w', $timestamp) !== '6') {
+                    $num++;
+                }
+                $timestamp += 60 * 60 * 24;
+            }
+            return $num;
         }
 
     }

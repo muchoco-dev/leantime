@@ -58,8 +58,6 @@ $helper = $this->get('helper');
 </script>
 
 <div class="pageheader">
-
-
     <div class="pageicon"><span class="iconfa-time"></span></div>
             <div class="pagetitle">
                 <h5><?php $this->e($_SESSION['currentProjectClient']." // ". $_SESSION['currentProjectName']); ?></h5>
@@ -231,8 +229,19 @@ $helper = $this->get('helper');
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="2"><strong><?php echo $this->__("label.total_hours")?></strong></td>
-			<td colspan="7"><strong><?php echo $sum; ?></strong></td>
+			<td><strong><?php echo $this->__("label.total_hours")?></strong></td>
+            <td><strong><?php echo $sum; ?>h</strong></td>
+        </tr>
+        <tr>
+            <td>今月残り目安</td>
+            <td>
+                <?php $max = 80; ?>
+                <?php if ($max > $sum) { ?>
+                <?php echo round(($max - $sum) / $this->get('weekdayNum'), 2); ?>h * <?php echo $this->get('weekdayNum') ?>日
+                <?php } else { ?>
+                達成済み
+                <?php } ?>
+            </td>
             <?php /*
 			<td>
                 <?php if ($login::userIsAtLeast("clientManager")) { ?>
@@ -255,6 +264,5 @@ $helper = $this->get('helper');
 
 </form>
 
-
-			</div>
-		</div>
+    </div>
+</div>
