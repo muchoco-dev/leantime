@@ -7,7 +7,7 @@
     $currentSprint  = $this->get("currentSprint");
 
     $todoTypeIcons  = $this->get("ticketTypeIcons");
-
+    $statusLabels   = $this->get('allTicketStates');
     $efforts        = $this->get('efforts');
 
     //All states >0 (<1 is archive)
@@ -125,48 +125,27 @@
 
 					
                     </div>
-                    <?php /*
+
                     <div class="filterBoxLeft">
-
-                        <label class="inline"><?=$this->__("label.milestone") ?></label>
+                        <label class="inline"><?=$this->__("label.todo_status") ?></label>
                         <div class="form-group">
-                            <select data-placeholder="<?=$this->__("input.placeholders.filter_by_milestone") ?>" title="<?=$this->__("input.placeholders.filter_by_milestone") ?>" name="milestone"  id="milestoneSelect">
-                                <option value=""><?=$this->__("label.all_milestones") ?></option>
-                                <?php foreach($this->get('milestones') as $milestoneRow){ 	?>
 
-                                    <?php echo"<option value='".$milestoneRow->id."'";
+                            <select data-placeholder="<?=$this->__("input.placeholders.filter_by_status")?>" name="searchStatus"  multiple="multiple" class="status-select" id="statusSelect">
+                                <option value=""></option>
+                                <option value="not_done" <?php if($searchCriteria['status'] !== false && strpos($searchCriteria['status'], 'not_done') !== false) echo" selected='selected' ";?>><?=$this->__("label.not_done")?></option>
+                                <?php foreach($statusLabels as $key=>$label){?>
 
-                                    if(isset($searchCriteria['milestone']) && ($searchCriteria['milestone'] == $milestoneRow->id)) echo" selected='selected' ";
+                                    <?php echo"<option value='".$key."'";
 
-                                    echo">".$this->escape($milestoneRow->headline)."</option>"; ?>
+                                    if($searchCriteria['status'] !== false && array_search((string) $key, explode(",",$searchCriteria['status'])) !== false) echo" selected='selected' ";
+                                    echo">". $this->escape($label["name"])."</option>"; ?>
 
                                 <?php } 	?>
                             </select>
                         </div>
 
-                        </div>*/ ?>
+                    </div>
 
-                        <?php /*
-                    <div class="filterBoxLeft">
-
-                        <label class="inline"><?=$this->__("label.todo_type") ?></label>
-                        <div class="form-group">
-                            <select data-placeholder="<?=$this->__("input.placeholders.filter_by_milestone") ?>" title="<?=$this->__("input.placeholders.filter_by_milestone") ?>" name="type" id="typeSelect">
-                                <option value=""><?=$this->__("label.all_types") ?></option>
-                                <?php foreach($this->get('types') as $type){ 	?>
-
-                                    <?php echo"<option value='".$type."'";
-
-                                    if(isset($searchCriteria['type']) && ($searchCriteria['type'] == $type)) echo" selected='selected' ";
-
-                                    echo">$type</option>"; ?>
-
-                                <?php } 	?>
-                            </select>
-                        </div>
-
-                        </div>
-                         */ ?>
 
                     <div class="filterBoxLeft">
                         <label class="inline"><?=$this->__("label.search_term") ?></label><br />
