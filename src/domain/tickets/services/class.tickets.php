@@ -59,7 +59,7 @@ namespace leantime\domain\services {
             $searchCriteria = array(
                 "currentProject"=> $_SESSION["currentProject"],
                 "users"=>"",
-                "status"=>"",
+                "status"=>"not_done",
                 "term"=> "",
                 "type"=> "",
                 "sprint"=> $_SESSION['currentSprint'],
@@ -82,10 +82,6 @@ namespace leantime\domain\services {
 
             if(isset($searchParams["type"]) === true) {
                 $searchCriteria["type"] = $searchParams["type"];
-            }
-
-            if(isset($searchParams["milestone"]) === true) {
-                $searchCriteria["milestone"] =$searchParams["milestone"];
             }
 
             if(isset($searchParams["groupBy"]) === true) {
