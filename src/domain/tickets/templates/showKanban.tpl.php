@@ -50,43 +50,7 @@
 
                 </div>
 
-                <div class="col-md-4 center">
-                    <span class="currentSprint">
-                        <?php  if($this->get('sprints') !== false && count($this->get('sprints'))  > 0) {?>
-                        <select data-placeholder="<?=$this->__("input.placeholders.filter_by_sprint") ?>" title="<?=$this->__("input.placeholders.filter_by_sprint") ?>" name="sprint" class="mainSprintSelector" onchange="form.submit()" id="sprintSelect">
-                            <option value="all" <?php if($searchCriteria['sprint'] != "all") echo"selected='selected'"; ?>><?=$this->__("links.all_todos") ?></option>
-                            <option value="backlog" <?php if($searchCriteria['sprint'] == "backlog") echo"selected='selected'"; ?>><?=$this->__("links.backlog") ?></option>
-                            <?php
-                            $dates = "";
-                            foreach($this->get('sprints') as $sprintRow){ 	?>
-
-                                <?php echo"<option value='".$sprintRow->id."'";
-
-                                if($this->get("currentSprint") !== false && $sprintRow->id == $this->get("currentSprint")) {
-
-                                    echo " selected='selected' ";
-
-                                    $dates = sprintf($this->__("label.date_from_date_to"), $this->getFormattedDateString($sprintRow->startDate), $this->getFormattedDateString($sprintRow->endDate));
-                                }
-                                echo ">";
-                                $this->e($sprintRow->name);
-                                echo "</option>";
-                                ?>
-
-                            <?php } 	?>
-                            </select>
-                            <br/>
-                        <small>
-                            <?php if($dates != "") {
-                                echo $dates; ?> - <a href="<?=BASE_URL ?>/sprints/editSprint/<?=$this->get("currentSprint")?>" class="sprintModal"><?=$this->__("links.edit_sprint") ?></a>
-                            <?php }else{ ?>
-                                <a href="<?=BASE_URL ?>/sprints/editSprint" class="sprintModal"><?=$this->__("links.create_sprint") ?></a>
-                            <?php } ?>
-                        </small>
-                        <?php } ?>
-                    </span>
-                </div>
-                <div class="col-md-4">
+               <div class="col-md-4">
                     <div class="pull-right">
                         <a onclick="leantime.ticketsController.toggleFilterBar();" class="btn btn-default"><?=$this->__("links.filter") ?></a>
                         <div class="btn-group viewDropDown">

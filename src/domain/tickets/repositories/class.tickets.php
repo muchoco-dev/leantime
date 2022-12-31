@@ -307,6 +307,41 @@ namespace leantime\domain\repositories {
 							zp_tickets.dependingTicketId,
 							zp_tickets.planHours,
 							zp_tickets.hourRemaining,
+							zp_projects.name AS projectName,
+							zp_clients.name AS clientName,
+							zp_clients.id AS clientId,
+							t1.lastname AS authorLastname,
+							t1.firstname AS authorFirstname, 
+							t1.profileId AS authorProfileId,
+							t2.firstname AS editorFirstname,
+							t2.lastname AS editorLastname,
+							t2.profileId AS editorProfileId
+						FROM 
+							zp_tickets 
+						LEFT JOIN zp_relationuserproject USING (projectId)
+						LEFT JOIN zp_projects ON zp_tickets.projectId = zp_projects.id
+						LEFT JOIN zp_clients ON zp_projects.clientId = zp_clients.id
+						LEFT JOIN zp_user AS t1 ON zp_tickets.userId = t1.id
+						LEFT JOIN zp_user AS t2 ON zp_tickets.editorId = t2.id
+                        WHERE zp_relationuserproject.userId = :userId AND zp_tickets.type <> 'subtask'";
+
+/*            $query = "SELECT
+							zp_tickets.id,
+							zp_tickets.headline, 
+							zp_tickets.description,
+							zp_tickets.date,
+							zp_tickets.storypoints,
+							zp_tickets.sortindex,
+							zp_tickets.dateToFinish,
+							zp_tickets.projectId,
+							zp_tickets.priority,
+							zp_tickets.type,
+							zp_tickets.status,
+							zp_tickets.tags,
+							zp_tickets.editorId,
+							zp_tickets.dependingTicketId,
+							zp_tickets.planHours,
+							zp_tickets.hourRemaining,
 							(SELECT ROUND(SUM(hours), 2) FROM zp_timesheets WHERE zp_tickets.id = zp_timesheets.ticketId) AS bookedHours,
 							zp_projects.name AS projectName,
 							zp_clients.name AS clientName,
@@ -330,11 +365,10 @@ namespace leantime\domain\repositories {
 						LEFT JOIN zp_file ON zp_tickets.id = zp_file.moduleId and zp_file.module = 'ticket'
                         LEFT JOIN zp_timesheets AS timesheets ON zp_tickets.id = timesheets.ticketId
                         WHERE zp_relationuserproject.userId = :userId AND zp_tickets.type <> 'subtask'";
-
+*/
             if($_SESSION['currentProject']  != "") {
                 $query .= " AND zp_tickets.projectId = :projectId";
             }
-
 
             if($searchCriteria["users"]  != "") {
                 $editorIdIn = core\db::arrayToPdoBindingString("users", count(explode(",", $searchCriteria["users"])));
@@ -375,7 +409,7 @@ namespace leantime\domain\repositories {
             }else if($sort == "duedate") {
                 $query .= " ORDER BY zp_tickets.dateToFinish ASC, zp_tickets.sortindex ASC, zp_tickets.id DESC";
             }
-
+            
             $stmn = $this->db->database->prepare($query);
             $stmn->bindValue(':userId', $_SESSION['userdata']['id'], PDO::PARAM_INT);
 
@@ -383,7 +417,7 @@ namespace leantime\domain\repositories {
 
                 $stmn->bindValue(':projectId', $_SESSION['currentProject'], PDO::PARAM_INT);
             }
-
+            
             if($searchCriteria["type"]  != "") {
                 $stmn->bindValue(':searchType', $searchCriteria["type"], PDO::PARAM_STR);
             }
@@ -406,7 +440,7 @@ namespace leantime\domain\repositories {
                 $stmn->bindValue(':termWild', $termWild, PDO::PARAM_STR);
                 $stmn->bindValue(':termStandard', $searchCriteria["term"], PDO::PARAM_STR);
             }
-
+ 
             $stmn->execute();
             $values = $stmn->fetchAll();
             $stmn->closeCursor();

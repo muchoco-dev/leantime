@@ -19,13 +19,12 @@ namespace leantime\domain\services {
         public function __construct()
         {
 
-            $this->tpl = new core\template();
+            // $this->tpl = new core\template();
             $this->projectRepository = new repositories\projects();
             $this->ticketRepository = new repositories\tickets();
             $this->language = new core\language();
             $this->projectService = new services\projects();
             $this->timesheetsRepo = new repositories\timesheets();
-
         }
 
         //GET Properties

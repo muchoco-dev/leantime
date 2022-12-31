@@ -16,11 +16,11 @@ namespace leantime\domain\controllers {
         public function __construct()
         {
             $this->tpl = new core\template();
+            
             $this->projectService = new services\projects();
             $this->ticketService = new services\tickets();
-            $this->sprintService = new services\sprints();
+//            $this->sprintService = new services\sprints();
             $this->timesheetService = new services\timesheets();
-
             $_SESSION['lastPage'] = CURRENT_URL;
             $_SESSION['lastTicketView'] = "kanban";
             $_SESSION['lastFilterdTicketKanbanView'] = CURRENT_URL;
@@ -29,7 +29,7 @@ namespace leantime\domain\controllers {
 
         public function get(array $params) {
 
-            $currentSprint = $this->sprintService->getCurrentSprintId($_SESSION['currentProject']);
+        //    $currentSprint = $this->sprintService->getCurrentSprintId($_SESSION['currentProject']);
 
             $searchCriteria = $this->ticketService->prepareTicketSearchArray($params);
             $searchCriteria["orderBy"] = "kanbansort";
@@ -47,7 +47,7 @@ namespace leantime\domain\controllers {
             $this->tpl->assign('users', $this->projectService->getUsersAssignedToProject($_SESSION["currentProject"]));
 
             $this->tpl->display('tickets.showKanban');
-
+ 
         }
 
         public function post(array $params) {

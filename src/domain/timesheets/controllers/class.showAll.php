@@ -139,7 +139,7 @@ namespace leantime\domain\controllers {
             $tpl->assign('projectFilter', $projectFilter);
             $tpl->assign('allTimesheets', $timesheetsRepo->getAll($projectFilter, $kind, $dateFrom, $dateTo, $userId, $invEmplCheck, $invCompCheck));
 
-            $tpl->assign('weekdayNum', $this->weekdayNum('today', 'last day of this month'));
+            $tpl->assign('weekdayNum', $this->weekdayNum('tomorrow', 'last day of this month'));
 
             $tpl->display('timesheets.showAll');
         }

@@ -186,7 +186,9 @@ $helper = $this->get('helper');
 	$billableSum = 0;
 	
 	foreach($this->get('allTimesheets') as $row) {
-		$sum = $sum + $row['hours'];?>
+        $sum = $sum + $row['hours'];
+        $projectId = $row['projectId'];
+?>
 		<tr>
             <td data-order="<?=$this->e($row['id']); ?>">
                 <?php if ($login::userIsAtLeast("clientManager")) { ?>
@@ -233,9 +235,15 @@ $helper = $this->get('helper');
             <td><strong><?php echo $sum; ?>h</strong></td>
         </tr>
         <tr>
-            <td>今月残り目安</td>
+        <td>今月残り目安</td>
             <td>
-                <?php $max = 80; ?>
+<?php
+                if ($projectId == '10') {
+                    $max = 60;
+                } else {
+                    $max = 80;
+                }
+?>
                 <?php if ($max > $sum) { ?>
                 <?php echo round(($max - $sum) / $this->get('weekdayNum'), 2); ?>h * <?php echo $this->get('weekdayNum') ?>日
                 <?php } else { ?>
