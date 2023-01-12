@@ -76,7 +76,7 @@
                             <div class="alert alert-error"><?php echo $login->error;?></div>
                         </div>
                         <div class="">
-                            <input type="text" name="username" id="username" class="form-control" placeholder="<?php echo $language->__("input.placeholders.enter_email"); ?>" value=""/>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="<?php echo $language->__("input.placeholders.enter_email"); ?>" value="" autofocus />
                         </div>
                         <div class="">
                             <input type="password" name="password" id="password" class="form-control" placeholder="<?php echo $language->__("input.placeholders.enter_password"); ?>" value=""/>

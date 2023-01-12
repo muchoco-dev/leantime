@@ -85,7 +85,7 @@
                         <div class="">
                             <input type="text" name="twoFA_code" id="twoFA_code" class="form-control"
                                    placeholder="<?php echo $language->__("label.twoFACode"); ?>"
-                                   value=""/>
+                                   value="" autofocus />
                         </div>
                         <div class="">
                             <a href="<?=BASE_URL ?>/index.php?logout=1" style="float:right; margin-top:10px;"><?php echo $language->__("menu.sign_out"); ?></a>
